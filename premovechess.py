@@ -39,8 +39,10 @@ class premoveChess:
             turnPlayer = "White"
         try:
             newWrittenMove = self.getMove(turnPlayer)
-            if(newWrittenMove == "end"):#Point A
-                return "Manually ended game"
+            if(newWrittenMove == "draw"):
+                return "Agreed draw"
+            if("wins" in newWrittenMove):
+                return newWrittenMove
             self.gameState.push_san(newWrittenMove)
         except:
             print("Illegal move!")
