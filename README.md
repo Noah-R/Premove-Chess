@@ -12,4 +12,4 @@ pygame: (by extensino of chess-board)
 
 todo:
     Interface, to slot into logic code at getMove()
-    Allow for players to resign and agree to draws, to replace debug game end at Point A
+    Allow for resignation/draw by agreement, to replace debug game end at Point A
