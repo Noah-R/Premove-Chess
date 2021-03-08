@@ -3,9 +3,9 @@ A variant of Chess where every move must be a premove - you don't know what move
 
 Current dependencies are:
 
-express.js
+    express.js
 
-python-chess: https://python-chess.readthedocs.io/
+    python-chess: https://python-chess.readthedocs.io/
 
 To Do:
 
