@@ -8,7 +8,7 @@ class premoveChess:
         validMove = False
         while(not validMove):
             try:
-                self.writtenMove = input("White, write your opening move")
+                self.writtenMove = self.getMove("White")
                 self.gameState.push_san(self.writtenMove)
                 validMove = True
             except:
@@ -19,6 +19,9 @@ class premoveChess:
     
     def showGameState(self):#print board as it will be after written move
         print(self.gameState)
+    
+    def getMove(self, turnPlayer):#This is where an interface will plug in
+        return input(str(turnPlayer)+", enter your move")
 
     def startGame(self):#manage turn sequence
         result = "*"
@@ -35,7 +38,9 @@ class premoveChess:
         if(whiteToWriteMove):
             turnPlayer = "White"
         try:
-            newWrittenMove = input(str(turnPlayer)+", enter your move")
+            newWrittenMove = self.getMove(turnPlayer)
+            if(newWrittenMove == "end"):#Point A
+                return "Manually ended game"
             self.gameState.push_san(newWrittenMove)
         except:
             print("Illegal move!")
@@ -46,18 +51,19 @@ class premoveChess:
         self.board.push_san(self.writtenMove)
         self.writtenMove = newWrittenMove
         if(self.gameState.is_repetition() or self.gameState.halfmove_clock>99):
-            return("Claimed draw")
-        return(self.gameState.result())
+            return "Claimed draw"
+        return self.gameState.result()
 
 """
 Control flow is:
-    Black writes move
-    White plays move
-        First move is made freely like normal
-        If black's written move is now illegal, white wins
-        If black's written move ends the game, the move is played and the game ends
-    White writes move
-    Black plays move
-        If white's written move is now illegal, black wins
-        If white's written move ends the game, the move is played and the game ends
+    White writes first move, then, until a written move ends the game:
+        Black writes move
+        White plays move
+            First move is made freely like normal
+            If black's written move is now illegal, white wins
+            If black's written move ends the game, the move is played and the game ends
+        White writes move
+        Black plays move
+            If white's written move is now illegal, black wins
+            If white's written move ends the game, the move is played and the game ends
 """
