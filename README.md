@@ -12,4 +12,3 @@ To Do:
     Routing, will basically just send game updates back and forth
     Web Server will basically be running premovechess.py, which will mainly interface through getMove() but will need some modifications to fully match 
     Deploy, through Heroku
-    .gitignore, for Python, Node, and whatever else
