@@ -1,23 +1,28 @@
 const express = require('express');
+const bodyParser = require('body-parser')
 const app = express();
 
+app.use(bodyParser.text())
 app.use(express.static('public'));
 
-app.post('/*', function(req, res){
+app.post('/chess.html/sendmove', function(req, res){
 
-    console.log("Got a post, isn't that funny");
-    console.log(req);
-    return("Post response")
+    res.send(""+req.body+" entered successfully")
 
 })
 
-app.get('/*', (req, res) => {
+app.get('/chess.html/position', (req, res) => {
 
-    console.log("Got a get, that's hilarious");
-    console.log(req);
-    return("<p>Get response</p>");
+    res.send("Game position");
 
     })
+
+app.post('/*'), (req, res) => {
+  res.send("other post")
+}
+app.get('/*'), (req, res) => {
+  res.send("other get")
+}
 
 let port = process.env.PORT;
 if (port == null || port == "") {
@@ -25,4 +30,6 @@ if (port == null || port == "") {
 }
 app.listen(port, () => console.log(`Running at localhost:`+port));
 
+// cd desktop/premove-chess
+// node app.js
 // http://localhost:3000/chess.html

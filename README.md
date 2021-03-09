@@ -5,15 +5,20 @@ Current dependencies are:
 
     express.js
 
+    body-parser
+
     python-chess: https://python-chess.readthedocs.io/
 
     chessboard-element: https://github.com/justinfagnani/chessboard-element
 
 To Do:
 
-    Routing, will basically just send game updates back and forth, will probably reference https://github.com/Aveek-Saha/Online-Chess
-
-    Web Server will basically be running premovechess.py, which will mainly interface through getMove() 
-    but will need some modifications to fully match 
+    Backend
+        Will basically be running premovechess.py or a js translation
+        Will mainly interface with Express routing through getMove()
+        Will need some modifications to fully match
+        Will probably reference https://github.com/Aveek-Saha/Online-Chess
     
+    Make everything actually work correctly together
+
     Deploy, through Heroku
