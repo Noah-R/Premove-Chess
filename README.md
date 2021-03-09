@@ -7,13 +7,11 @@ Current dependencies are:
 
     python-chess: https://python-chess.readthedocs.io/
 
+    chessboard-element: https://github.com/justinfagnani/chessboard-element
+
 To Do:
 
-    Frontend, will probably be something from https://lichess.org/source
-
-        Needs to allow and try to execute premoves like lichess/chess.com does in an interfaceable way
-
-    Routing, will basically just send game updates back and forth
+    Routing, will basically just send game updates back and forth, will probably reference https://github.com/Aveek-Saha/Online-Chess
 
     Web Server will basically be running premovechess.py, which will mainly interface through getMove() 
     but will need some modifications to fully match 

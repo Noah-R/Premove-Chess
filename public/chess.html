@@ -2,39 +2,14 @@
     <head>
         <link rel="stylesheet" type="text/css" href="main.css">
         <title>talk</title>
-        <script>
-            function talk(){
-                let request = new XMLHttpRequest();
-                request.open("POST", "http://localhost:3000/");
-                request.setRequestHeader("message", "this is the message");
-                request.send();
-                reset();
-            }
-            function listen(){
-                let request = new XMLHttpRequest();
-                var message="";
-                request.onreadystatechange = function() {
-                    console.log("We got a response!");
-                    console.log(request.response);
-                };
-                request.open("GET", "http://localhost:3000/");
-                request.send();
-            }
-            function reset(){
-                document.getElementById("topper").innerHTML="";
-                document.getElementById("middler").innerHTML=`
-                <input type="submit" onclick="talk()" value="talk"></input>
-                <input type="submit" onclick="listen()" value="listen"></input>
-                `
-            }
-        </script>
+        <script type="module" src="https://unpkg.com/chessboard-element?module"></script>
     </head>
     <body>
-        <div id="topper">
+        <div id="center">        
+            <chess-board id="board" position="start" draggable-pieces orientation="white"></chess-board>
+            <button id="reset">Reset</button>
+            <button id="position">Position</button>
         </div>
-        <div id="middler">
-            <input type="submit" onclick="talk()" value="talk"></input>
-            <input type="submit" onclick="listen()" value="listen"></input>
-        </div>
+        <script src="scripts.js"></script>
     </body>
 </html>

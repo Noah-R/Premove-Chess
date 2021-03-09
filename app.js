@@ -5,15 +5,17 @@ app.use(express.static('public'));
 
 app.post('/*', function(req, res){
 
-    console.log("Got a post, isn't that funny")
-    console.log(req)
+    console.log("Got a post, isn't that funny");
+    console.log(req);
+    return("Post response")
 
 })
 
 app.get('/*', (req, res) => {
 
-    console.log("Got a get, that's hilarious")
-    console.log(req)
+    console.log("Got a get, that's hilarious");
+    console.log(req);
+    return("<p>Get response</p>");
 
     })
 

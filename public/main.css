@@ -4,7 +4,8 @@ body{
 p{
     color: white;
 }
-#middler{
+#center{
     height: 640px;
+    width: 480px;
     position: relative;
 }
