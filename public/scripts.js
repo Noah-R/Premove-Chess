@@ -9,7 +9,7 @@ board.addEventListener('drop', (e) => {
         request.onload  = function() {
             console.log(request.response);
         };
-        request.open("POST", "http://localhost:3000/chess.html/sendmove");
+        request.open("POST", "http://localhost:3000/sendmove");
         move=''+source+''+target
         request.send(move);
     }
@@ -25,6 +25,6 @@ function listenForPosition(){
     request.onload  = function() {
         console.log(request.response);
     };
-    request.open("GET", "http://localhost:3000/chess.html/position");
+    request.open("GET", "http://localhost:3000/position");
     request.send();
 }

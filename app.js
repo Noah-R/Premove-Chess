@@ -5,13 +5,13 @@ const app = express();
 app.use(bodyParser.text())
 app.use(express.static('public'));
 
-app.post('/chess.html/sendmove', function(req, res){
+app.post('/sendmove', function(req, res){
 
     res.send(""+req.body+" entered successfully")
 
 })
 
-app.get('/chess.html/position', (req, res) => {
+app.get('/position', (req, res) => {
 
     res.send("Game position");
 

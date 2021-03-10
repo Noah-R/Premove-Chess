@@ -1,3 +1,5 @@
+#This is the original game logic I wrote, using python-chess. The app no longer uses this.
+
 import chess
 
 class premoveChess:
@@ -20,7 +22,7 @@ class premoveChess:
     def showGameState(self):#print board as it will be after written move
         print(self.gameState)
     
-    def getMove(self, turnPlayer):#This is where an interface will plug in
+    def getMove(self, turnPlayer):#This is where an interface will plug in(also the above two)
         return input(str(turnPlayer)+", enter your move")
 
     def startGame(self):#manage turn sequence

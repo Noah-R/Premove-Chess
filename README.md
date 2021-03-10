@@ -14,8 +14,10 @@ Current dependencies are:
 To Do:
 
     Backend
-        Will basically be running premovechess.py or a js translation
-        Will mainly interface with Express routing through getMove()
+        Will basically be running premovechess.py
+            https://medium.com/@HolmesLaurence/integrating-node-and-python-6b8454bfc272
+            Python request library
+        Will mainly interface with Express routing through getMove() and showBoard()/showGameState()
         Will need some modifications to fully match
         Will probably reference https://github.com/Aveek-Saha/Online-Chess
     
