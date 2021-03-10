@@ -2,14 +2,16 @@ const { Chess } = require("chess.js");
 
 class premoveChess{
 
+    static test(){
+        return(2/0)
+    }
+
     constructor(){
         this.board = new Chess();
         this.gameState = new Chess();
-        validMove = null;
-        while(validMove == null){
-            this.writtenMove = self.getMove("White");
-            validMove = this.gameState.move(self.writtenMove);
-        }
+        this.writtenMove = {"from": "a1", "to": "a1"};
+        this.toWriteMove = "White"
+        this.result = "*"
     }
     showBoard(){
         return this.board.fen()
@@ -17,43 +19,42 @@ class premoveChess{
     showGameState(){
         return this.gameState.fen();
     }
-    getMove(turnPlayer){//get move from client
-    }
-    startGame(){//manage turn sequence
-        result = "*";
-        whiteToWriteMove = false;
-        while(result == "*"){
-            result = this.turn(whiteToWriteMove);
-            whiteToWriteMove = !whiteToWriteMove;
-        }
-        self.showGameState();
-        console.log(result);
-    }
-    turn(whiteToWriteMove){//executes turn, returns game result
-        this.showBoard();
-        turnPlayer = "Black";
-        if(whiteToWriteMove){
-            turnPlayer = "White";
-        }
-        newWrittenMove = this.getMove(turnPlayer);
-        valid = this.gameState.move(newWrittenMove);
+    turn(move){//executes move, returns game status
+        var valid = this.gameState.move(move);
         if(valid == null){
             console.log("Illegal move!");
-            if(whiteToWriteMove){
-                return "0-1";
+            if(this.toWriteMove=="White"){
+                return "Black wins by illegal premove";
+            }
+            else if(this.toWriteMove=="Black"){
+                return "White wins by illegal premove";
             }
             else{
-                return "1-0";
+                return "Something went wrong here, India Papa";
             }
         }
         this.board.move(this.writtenMove);
-        this.writtenMove = newWrittenMove;
-        if(this.gameState.in_draw() || this.gameState.in_stalemate() || this.gameState.in_threefold_repetition()){
-            return "Draw";
+        this.writtenMove = move;
+        if(this.gameState.in_draw()){
+            return "Draw by 50 moves or insufficient material";
+        }
+        if(this.gameState.in_stalemate()){
+            return "Draw by stalemate";
+        }
+        if(this.gameState.in_threefold_repetition()){
+            return "Draw by threefold repetition";
         }
         if(this.gameState.in_checkmate()){
-            return turnplayer+" wins";
+            return this.toWriteMove+" wins by checkmate";
         }
-        return "*";
+        if(this.toWriteMove=="White"){
+            this.toWriteMove="Black";
+        }
+        else{
+            this.toWriteMove="White";
+        }
+        return "Game is not over yet";
     }
 }
+
+module.exports = premoveChess;

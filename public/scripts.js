@@ -10,8 +10,9 @@ board.addEventListener('drop', (e) => {
             console.log(request.response);
         };
         request.open("POST", "http://localhost:3000/sendmove");
-        move={ from: source, to: target}
-        request.send(move);
+        request.setRequestHeader("Content-Type", "application/json");
+        move={"from": source, "to": target};
+        request.send(JSON.stringify(move));
     }
 });
 document.getElementById('reset').addEventListener('click', () => {

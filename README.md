@@ -5,15 +5,11 @@ Current dependencies are:
 
     express.js
 
-    body-parser
-
     chess.js
 
     chessboard-element: https://github.com/justinfagnani/chessboard-element
 
 To Do:
-
-    Integrate app.js with premovechess.js
 
     Write sockets into app.js
         https://github.com/Aveek-Saha/Online-Chess
