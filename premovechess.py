@@ -1,4 +1,4 @@
-#This is the original game logic I wrote, using python-chess. The app no longer uses this.
+#This is the original game logic I wrote, using python-chess. It works as a standalone text-based console game, the web app does not use it.
 
 import chess
 
