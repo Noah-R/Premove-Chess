@@ -1,7 +1,7 @@
 const board = document.getElementById('board');
 board.addEventListener('drop', (e) => {
     const {source, target, piece, setAction} = e.detail;
-    if (piece.search(/b/) !== -1) {//has to check which color player is, get to that later
+    if (piece.search(/b/) !== -1) {//has to check which color player is, also promotion, get to that later
         setAction('snapback');
     }
     else{
@@ -10,7 +10,7 @@ board.addEventListener('drop', (e) => {
             console.log(request.response);
         };
         request.open("POST", "http://localhost:3000/sendmove");
-        move=''+source+''+target
+        move={ from: source, to: target}
         request.send(move);
     }
 });

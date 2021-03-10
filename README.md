@@ -7,20 +7,20 @@ Current dependencies are:
 
     body-parser
 
-    python-chess: https://python-chess.readthedocs.io/
+    chess.js
 
     chessboard-element: https://github.com/justinfagnani/chessboard-element
 
 To Do:
 
-    Backend
-        Will basically be running premovechess.py
-            https://medium.com/@HolmesLaurence/integrating-node-and-python-6b8454bfc272
-            Python request library
-        Will mainly interface with Express routing through getMove() and showBoard()/showGameState()
-        Will need some modifications to fully match
-        Will probably reference https://github.com/Aveek-Saha/Online-Chess
-    
-    Make everything actually work correctly together
+    Integrate app.js with premovechess.js
+
+    Write sockets into app.js
+        https://github.com/Aveek-Saha/Online-Chess
+        socket.io
+
+    Make the game work properly
+
+    Debug
 
     Deploy, through Heroku
