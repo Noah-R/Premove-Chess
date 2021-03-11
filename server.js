@@ -48,11 +48,15 @@ app.post('/position', (req, res) => {
 
 })
 
+app.get('/', function (req, res) {
+  res.send("Nothing at base directory, try /chess.html");
+});
+
 app.post('/*'), (req, res) => {
   res.send("Something went wrong here, Uniform Papa");
 }
-app.get('/'), (req, res) => {
-  res.send("Nothing at base directory, try /chess.html");
+app.get('/*'), (req, res) => {
+  res.send("Something went wrong here, Uniform Golf");
 }
 
 let port = process.env.PORT;
