@@ -1,16 +1,6 @@
 # Premove-Chess
 A variant of Chess where every move must be a premove - you don't know what move your opponent made before you decide yours. If you make an illegal move, you lose!
 
-This is a complete web app, front to back, that allows two players to play this variant I invented. It's a bit finicky, it only handles one game, and it's very light on the front end, but it's a workable demonstration of concept.
+This is a complete web app, front to back, that allows two players to play this variant I invented. It's mostly a demonstration of concept, so it's a bit finicky, it only handles one game, and it's very light on the front end. It's production ready, everything works, and it's stable, to my knowledge, but I'm sure there are security holes and the like, and so of course...
 
-Dependencies:
-
-    express.js
-
-    chess.js
-
-    chessboard-element: https://github.com/justinfagnani/chessboard-element
-
-To Do:
-
-    Deploy, through Heroku
+Everything in this repository is provided as is. I make no warranties, guarantees, promises, assurances, or other kinds of indications whatsoever as to the working order, stability, safety, security, or other conditions of fitness for purpose of anything provided in this repository. 
