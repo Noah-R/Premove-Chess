@@ -1,22 +1,28 @@
 const board = document.getElementById('board');
 board.addEventListener('drop', (e) => {
     const {source, target, piece, setAction} = e.detail;
-    if (piece.search(/b/) !== -1) {//has to check which color player is, also promotion, get to that later
+    /*if (piece.search(/b/) !== -1) {//If the player tries to move a black piece, snap it back
         setAction('snapback');
-    }
-    else{
-        let request = new XMLHttpRequest();
-        request.onload  = function() {
-            console.log(request.response);
-        };
-        request.open("POST", "http://localhost:3000/sendmove");
-        request.setRequestHeader("Content-Type", "application/json");
-        move={"from": source, "to": target};
-        request.send(JSON.stringify(move));
-    }
+    }//Below code should be an else*/
+    let request = new XMLHttpRequest();
+    request.onload  = function() {
+        console.log(request.response);
+        listenForPosition();
+    };
+    request.open("POST", "http://localhost:3000/move");
+    request.setRequestHeader("Content-Type", "application/json");
+    move={"from": source, "to": target, "player": document.getElementById("playerkey").value};
+    request.send(JSON.stringify(move));
 });
 document.getElementById('reset').addEventListener('click', () => {
-    board.start();
+    let request = new XMLHttpRequest();
+    request.onload  = function() {
+        listenForPosition();
+    };
+    request.open("POST", "http://localhost:3000/newgame");
+    request.setRequestHeader("Content-Type", "application/json");
+    player={"player": document.getElementById("playerkey").value};
+    request.send(JSON.stringify(player));
 });
 document.getElementById('position').addEventListener('click', () => {
     listenForPosition();
@@ -24,8 +30,17 @@ document.getElementById('position').addEventListener('click', () => {
 function listenForPosition(){
     let request = new XMLHttpRequest();
     request.onload  = function() {
-        console.log(request.response);
+        if(!(request.response=="Invalid player key")){
+            result=JSON.parse(request.response);
+            board.setPosition(result.board);
+            document.getElementById("status").innerHTML=result.status;
+        }
     };
-    request.open("GET", "http://localhost:3000/position");
-    request.send();
+    request.open("POST", "http://localhost:3000/position");
+    request.setRequestHeader("Content-Type", "application/json");
+    player={"player": document.getElementById("playerkey").value};
+    request.send(JSON.stringify(player));
 }
+document.getElementById('flip').addEventListener('click', () => {
+    board.flip();
+  });

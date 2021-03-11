@@ -1,14 +1,18 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="shortcut icon" href="favicon.ico">
         <title>talk</title>
         <script type="module" src="https://unpkg.com/chessboard-element?module"></script>
     </head>
     <body>
         <div id="center">        
             <chess-board id="board" position="start" draggable-pieces orientation="white"></chess-board>
-            <button id="reset">Reset</button>
-            <button id="position">Position</button>
+            <button id="reset">New Game</button>
+            <button id="position">Get Position</button>
+            <button id="flip">Flip board</button>
+            <input id="playerkey" type="text" placeholder="Game Code">
+            <p id="status">White to write initial move</p>
         </div>
         <script src="scripts.js"></script>
     </body>

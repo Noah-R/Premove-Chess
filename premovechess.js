@@ -2,50 +2,77 @@ const { Chess } = require("chess.js");
 
 class premoveChess{
 
-    static test(){
-        return(2/0)
-    }
-
     constructor(){
         this.board = new Chess();
         this.gameState = new Chess();
-        this.writtenMove = {"from": "a1", "to": "a1"};
+        this.writtenMove = {"from": "a1", "to": "b7"};
         this.toWriteMove = "White"
-        this.result = "*"
+        this.status = "White to write initial move"
+        this.gameOver = false;
     }
+
     showBoard(){
         return this.board.fen()
     }
+    
     showGameState(){
         return this.gameState.fen();
     }
+
+    playerToWriteMove(){
+        return this.toWriteMove;
+    }
+
+    getStatus(){
+        return this.status;
+    }
+
+    isGameOver(){
+        return this.gameOver;
+    }
+    
     turn(move){//executes move, returns game status
+        if(this.gameOver){
+            return;
+        }
         var valid = this.gameState.move(move);
         if(valid == null){
-            console.log("Illegal move!");
             if(this.toWriteMove=="White"){
-                return "Black wins by illegal premove";
+                this.status =  "White tried to move "+move.from+" to "+move.to+", Black wins by illegal premove";
+                this.gameOver=true;
+                return;
             }
             else if(this.toWriteMove=="Black"){
-                return "White wins by illegal premove";
+                this.status =  "Black tried to move "+move.from+" to "+move.to+", White wins by illegal premove";
+                this.gameOver=true;
+                return;
             }
             else{
-                return "Something went wrong here, India Papa";
+                this.status =  "Something went wrong here, India Papa";
+                return;
             }
         }
         this.board.move(this.writtenMove);
         this.writtenMove = move;
         if(this.gameState.in_draw()){
-            return "Draw by 50 moves or insufficient material";
+            this.status =  this.toWriteMove+" moved "+move.from+" to "+move.to+", Draw by 50 moves or insufficient material";
+            this.gameOver=true;
+            return;
         }
         if(this.gameState.in_stalemate()){
-            return "Draw by stalemate";
+            this.status =  this.toWriteMove+" moved "+move.from+" to "+move.to+", Draw by stalemate";
+            this.gameOver=true;
+            return;
         }
         if(this.gameState.in_threefold_repetition()){
-            return "Draw by threefold repetition";
+            this.status =  this.toWriteMove+" moved "+move.from+" to "+move.to+", Draw by threefold repetition";
+            this.gameOver=true;
+            return;
         }
         if(this.gameState.in_checkmate()){
-            return this.toWriteMove+" wins by checkmate";
+            this.status =  this.toWriteMove+" moved "+move.from+" to "+move.to+", "+this.toWriteMove+" wins by checkmate";
+            this.gameOver=true;
+            return;
         }
         if(this.toWriteMove=="White"){
             this.toWriteMove="Black";
@@ -53,7 +80,8 @@ class premoveChess{
         else{
             this.toWriteMove="White";
         }
-        return "Game is not over yet";
+        this.status =  this.toWriteMove+" to write a move";
+        return;
     }
 }
 

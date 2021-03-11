@@ -1,30 +1,58 @@
 const express = require('express');
-const bodyParser = require('body-parser')
 const premoveChess = require('./premovechess.js')
 const app = express();
-
 app.use(express.json())
 app.use(express.static('public'));
+var playerKeys = {"wp": "White", "bp": "Black"}
 
-app.post('/sendmove', function(req, res){
+app.post('/move', function(req, res){
 
-    result = game.turn(req.body);
-    res.send(""+req.body+" entered successfully with result "+result);
+  if(game.playerToWriteMove()===playerKeys[req.body.player]){
+    res.send(game.turn(req.body));
+  }
+  else if(playerKeys.hasOwnProperty(req.body.player)){
+    res.send("Not your turn");
+  }
+  else{
+    res.send("Invalid player key");
+  }
 
 })
 
-app.get('/position', (req, res) => {
+app.post('/newgame', function(req, res){
 
-    //res.send(game.showBoard());
-    res.send(game.showGameState());
+  if(playerKeys.hasOwnProperty(req.body.player)){
+    game = new premoveChess();
+    res.send("Game restarted");
+  }
+  else{
+    res.send("Invalid player key");
+  }
 
-    })
+})
+
+app.post('/position', (req, res) => {
+
+  if(playerKeys.hasOwnProperty(req.body.player)){
+    if(game.isGameOver()){
+      result={"board": game.showGameState(), "status": game.getStatus()};
+    }
+    else{
+      result={"board": game.showBoard(), "status": game.getStatus()};
+    }
+    res.send(JSON.stringify(result));
+  }
+  else{
+    res.send("Invalid player key");
+  }
+
+})
 
 app.post('/*'), (req, res) => {
-  res.send("other post")
+  res.send("Something went wrong here, Uniform Papa");
 }
 app.get('/*'), (req, res) => {
-  res.send("other get")
+  res.send("Something went wrong here, Uniform Golf");
 }
 
 let port = process.env.PORT;
@@ -34,6 +62,4 @@ if (port == null || port == "") {
 app.listen(port, () => console.log(`Running at localhost:`+port));
 game = new premoveChess();
 
-// cd desktop/premove-chess
-// node app.js
 // http://localhost:3000/chess.html

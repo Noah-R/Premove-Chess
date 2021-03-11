@@ -11,12 +11,6 @@ Current dependencies are:
 
 To Do:
 
-    Write sockets into app.js
-        https://github.com/Aveek-Saha/Online-Chess
-        socket.io
-
-    Make the game work properly
-
-    Debug
-
+    Show failed move
+    
     Deploy, through Heroku
