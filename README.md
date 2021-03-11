@@ -1,7 +1,9 @@
 # Premove-Chess
-A variant of Chess where every move must be a premove - you don't know what move your opponent made before you decide yours
+A variant of Chess where every move must be a premove - you don't know what move your opponent made before you decide yours. If you make an illegal move, you lose!
 
-Current dependencies are:
+This is a complete web app, front to back, that allows two players to play this variant I invented. It's a bit finicky, it only handles one game, and it's very light on the front end, but it's a workable demonstration of concept.
+
+Dependencies:
 
     express.js
 
@@ -11,6 +13,4 @@ Current dependencies are:
 
 To Do:
 
-    Show failed move
-    
     Deploy, through Heroku

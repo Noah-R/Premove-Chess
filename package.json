@@ -2,7 +2,7 @@
   "name": "premove-chess",
   "version": "1.0.0",
   "description": "A variant of Chess where every move must be a premove - you don't know what move your opponent made before you decide yours",
-  "main": "app.js",
+  "main": "index.js",
   "dependencies": {
     "chess.js": "^0.11.0",
     "chessboard-element": "^1.1.0",
