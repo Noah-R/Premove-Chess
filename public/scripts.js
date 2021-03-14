@@ -1,4 +1,5 @@
 const board = document.getElementById('board');
+const serv = "http://rcnrcn927.herokuapp.com/"
 board.addEventListener('drop', (e) => {
     const {source, target, piece, setAction} = e.detail;
     /*if (piece.search(/b/) !== -1) {//If the player tries to move a black piece, snap it back
@@ -9,7 +10,7 @@ board.addEventListener('drop', (e) => {
         console.log(request.response);
         listenForPosition();
     };
-    request.open("POST", "http://localhost:3000/move");
+    request.open("POST", serv+"move");
     request.setRequestHeader("Content-Type", "application/json");
     move={"from": source, "to": target, "player": document.getElementById("playerkey").value};
     request.send(JSON.stringify(move));
@@ -19,7 +20,7 @@ document.getElementById('reset').addEventListener('click', () => {
     request.onload  = function() {
         listenForPosition();
     };
-    request.open("POST", "http://localhost:3000/newgame");
+    request.open("POST", serv+"newgame");
     request.setRequestHeader("Content-Type", "application/json");
     player={"player": document.getElementById("playerkey").value};
     request.send(JSON.stringify(player));
@@ -36,7 +37,7 @@ function listenForPosition(){
             document.getElementById("status").innerHTML=result.status;
         }
     };
-    request.open("POST", "http://localhost:3000/position");
+    request.open("POST", serv+"position");
     request.setRequestHeader("Content-Type", "application/json");
     player={"player": document.getElementById("playerkey").value};
     request.send(JSON.stringify(player));
