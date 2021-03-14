@@ -1,5 +1,5 @@
 const board = document.getElementById('board');
-const serv = "http://rcnrcn927.herokuapp.com/"
+const serv = "https://rcnrcn927.herokuapp.com/"
 board.addEventListener('drop', (e) => {
     const {source, target, piece, setAction} = e.detail;
     /*if (piece.search(/b/) !== -1) {//If the player tries to move a black piece, snap it back
