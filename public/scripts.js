@@ -4,10 +4,9 @@ board.addEventListener('drop', (e) => {
     const {source, target, piece, setAction} = e.detail;
     /*if (piece.search(/b/) !== -1) {//If the player tries to move a black piece, snap it back
         setAction('snapback');
-    }//Below code should be an else*/
+    }//Below code should be an else if this is uncommented*/
     let request = new XMLHttpRequest();
     request.onload  = function() {
-        console.log(request.response);
         listenForPosition();
     };
     request.open("POST", serv+"move");
