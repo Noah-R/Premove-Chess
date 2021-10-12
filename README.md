@@ -5,7 +5,7 @@ This is a complete web app, front to back, that allows two players to play this 
 
 Everything in this repository is provided as is. I make no warranties, guarantees, promises, assurances, or other kinds of indications whatsoever as to the working order, stability, safety, security, or other conditions of fitness for purpose of anything provided in this repository.
 
-Things I might at some point do to improve this:
+# Room for expansion
 
 Allow more games/implement a MongoDB to properly manage state
 
